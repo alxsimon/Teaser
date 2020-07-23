@@ -1,0 +1,54 @@
+BootStrap: docker
+From: ubuntu:20.04
+
+%labels
+	Author Alexis Simon
+	Version v0.0.1
+
+%environment
+	export PATH=/opt/conda/bin:$PATH
+    export LC_ALL=C.UTF-8
+	export LANG=C.UTF-8
+
+%post -c bash
+	apt-get update && apt-get upgrade -y
+	export DEBIAN_FRONTEND=noninteractive
+	apt-get install -y tzdata
+	apt-get install -y \
+		wget git curl zlib1g-dev cmake build-essential
+
+    ### Install Conda ###
+	curl -sSL https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh -o /tmp/miniconda.sh \
+	&& bash /tmp/miniconda.sh -bp /opt/conda \
+	&& export PATH=/opt/conda/bin:$PATH \
+	&& conda update -y conda \
+	&& conda clean --all --yes
+	# If conda envs are needed, just source /conda_init.sh when using exec
+	cp /opt/conda/etc/profile.d/conda.sh /conda_init.sh
+	source /conda_init.sh
+
+	conda config --add channels defaults
+	conda config --add channels bioconda
+	conda config --add channels conda-forge
+
+    conda install -y intervaltree tornado pyaml psutil numpy
+
+	conda install -y -c bioconda dwgsim mason
+
+	# mappers
+	conda install -y -c bioconda \
+		bwa \
+		bwa-mem2 \
+		bowtie2 \
+		minimap2
+	conda install -y -c BioBuilds soap3-dp
+	# will need cuda and nvidia drivers to work
+
+	## Clone Teaser ##
+	git clone https://github.com/alxsimon/Teaser.git /opt/Teaser
+
+%apprun run
+	exec /bin/bash "$@"
+
+%runscript
+	exec /bin/bash "$@"
