@@ -12,3 +12,8 @@ evaluation:
 threads: 1
 
 report: { name: example_ecoli }
+
+test_mappers:
+   - bwamem
+   - bwa-mem2
+   - minimap2
