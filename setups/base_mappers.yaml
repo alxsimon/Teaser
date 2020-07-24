@@ -44,7 +44,7 @@ mappers:
     type: MapperGeneric
     bin:
       - software/bowtie2
-      - software/bowtie2/bowtie2-build
+      - software/bowtie2-build
 
     index_files:
       - (r)_bt.1.bt2
