@@ -42,8 +42,10 @@ From: ubuntu:20.04
 	conda install -y -c BioBuilds soap3-dp
 	# will need cuda and nvidia drivers to work
 
-	## Clone Teaser ##
-	git clone https://github.com/alxsimon/Teaser.git /opt/Teaser
+	## install Teaser ##
+	git clone https://github.com/alxsimon/Teaser.git /Teaser
+	cd /Teaser
+	./install.py
 
 %apprun run
 	exec /bin/bash "$@"
