@@ -22,7 +22,7 @@ if major != 2:
 
 print("Downloading software packages (Mappers and Simulators)...")
 sub("wget http://www.cibiv.at/software/teaser/teaser_software.tar.gz")
-sub("tar -zcvf teaser_software.tar.gz software/mason")
+sub("tar -zxvf teaser_software.tar.gz software/mason")
 sub("rm teaser_software.tar.gz")
 
 print("Downloading example reference genome (E. coli)...")
