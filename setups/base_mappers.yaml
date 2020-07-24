@@ -39,6 +39,23 @@ mappers:
     command_cleanup: ""
     param_paired: ""
 
+  bwasw:
+    title: "BWA-SW"
+    type: MapperGeneric
+    bin: software/bwa
+    index_files:
+      - (r).amb
+      - (r).ann
+      - (r).bwt
+      - (r).pac
+      - (r).sa
+
+    command_index: (b) index (r)
+    command: (b) bwasw (r) (q) (x) -t (t) > (o)
+    command_multi_read_files: (b) bwasw (r) (q1) (q2) (x) -t (t) > (o)
+    command_cleanup: ""
+    param_paired: ""
+
   bowtie2:
     title: "Bowtie 2"
     type: MapperGeneric
