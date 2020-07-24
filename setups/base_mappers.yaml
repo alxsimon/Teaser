@@ -19,8 +19,8 @@ mappers:
     command_index: (b) index (r)
     command: (b) aln (r) (q) (x) -t (t) > (o).bwa; (b) samse (r) (o).bwa (q) > (o)
     command_multi_read_files: (b) aln (r) (q1) (x) -t (t) > (o)_1.sai; (b) aln (r) (q2) (x) -t (t) > (o)_2.sai; (b) sampe (r) (o)_1.sai (o)_2.sai (q1) (q2) > (o)
-    command_cleanup: ''
-    param_paired: ''
+    command_cleanup: ""
+    param_paired: ""
 
   bwamem:
     title: "BWA-MEM"
@@ -36,46 +36,8 @@ mappers:
     command_index: (b) index (r)
     command: (b) mem (r) (q) (x) -t (t) > (o)
     command_multi_read_files: (b) mem (r) (q1) (q2) (x) -t (t) > (o)
-    command_cleanup: ''
-    param_paired: ''
-
-  bwasw:
-    title: "BWA-SW"
-    type: MapperGeneric
-    bin: software/bwa
-    index_files:
-      - (r).amb
-      - (r).ann
-      - (r).bwt
-      - (r).pac
-      - (r).sa
-
-    command_index: (b) index (r)
-    command: (b) bwasw (r) (q) (x) -t (t) > (o)
-    command_multi_read_files: (b) bwasw (r) (q1) (q2) (x) -t (t) > (o)
-    command_cleanup: ''
-    param_paired: ''
-
-  bowtie:
-    title: "Bowtie"
-    type: MapperGeneric
-    bin:
-      - software/bowtie
-      - software/bowtie-build
-
-    index_files:
-      - (r)_bo.1.ebwt
-      - (r)_bo.2.ebwt
-      - (r)_bo.3.ebwt
-      - (r)_bo.4.ebwt
-      - (r)_bo.rev.1.ebwt
-      - (r)_bo.rev.2.ebwt
-
-    command_index: (b2) (r) (r)_bo
-    command: (b1) --threads (t) (x) -S (r)_bo (q) (o)
-    command_multi_read_files: (b1) --threads (t) (x) -S (r)_bo -1 (q1) -2 (q2) (o)
-    command_cleanup: ''
-    param_paired: ''
+    command_cleanup: ""
+    param_paired: ""
 
   bowtie2:
     title: "Bowtie 2"
@@ -95,51 +57,5 @@ mappers:
     command_index: (b2) (r) (r)_bt
     command: (b1) (x) -p (t) -x (r)_bt -U (q) -S (o)
     command_multi_read_files: (b1) (x) -p (t) -x (r)_bt -1 (q1) -2 (q2) -S (o)
-    command_cleanup: ''
-    param_paired: ''
-
-  stampy:
-     title: "Stampy"
-     type: MapperGeneric
-     bin: software/stampy
-     index_files:
-       - (r)_o.stidx
-       - (r)_o.sthash
-     command_index: (b) -G (r)_o (r); (b) -g (r)_o -H (r)_o
-     command: (b) (x) -t (t) -g (r)_o -h (r)_o -M (q) -o (o)
-     command_multi_read_files: (b) (x) -t (t) -g (r)_o -h (r)_o -o (o) -M (q1) (q2)
-     command_cleanup: ''
-     param_paired: ''
-
-  segemehl:
-    type: MapperGeneric
-    bin: software/segemehl.x
-    index_files:
-      - (r).idx
-    command_index: (b) -x (r).idx -d (r)
-    command: (b) (x) -r 1 -i (r).idx -d (r) -q (q) > (o)
-    command_multi_read_files: (b) (x) -r 1 -i (r).idx -d (r) -q (q1) -p (q2) > (o)
-    command_cleanup: ''
-    param_paired: ''
-
-  cushaw3:
-    title: "CUSHAW3"
-    type: MapperGeneric
-    bin: software/cushaw3/cushaw3
-    index_files:
-      - (r)_cushaw3.ann
-      - (r)_cushaw3.map
-      - (r)_cushaw3.pac
-      - (r)_cushaw3.rbwt
-      - (r)_cushaw3.rsa
-    command_index: (b) index -p (r)_cushaw3 (r)
-    command: (b) align -r (r)_cushaw3 -f (q) -o (o) -t (t) -multi 1
-    command_multi_read_files: (b) align -r (r)_cushaw3 -q (q1) (q2) -o (o) -t (t) -multi 1
-    command_cleanup: ''
-    param_paired: ''
-
-  ngm:
-    title: "NGM"
-    type: ngm
-    bin: software/ngm/ngm
-    param_string: ''
+    command_cleanup: ""
+    param_paired: ""
