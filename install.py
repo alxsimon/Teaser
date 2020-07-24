@@ -22,24 +22,13 @@ if major != 2:
 
 print("Downloading software packages (Mappers and Simulators)...")
 sub("wget http://www.cibiv.at/software/teaser/teaser_software.tar.gz")
-sub("tar -xvzf teaser_software.tar.gz")
+sub("tar -zcvf teaser_software.tar.gz software/mason")
+sub("rm teaser_software.tar.gz")
 
 print("Downloading example reference genome (E. coli)...")
 os.chdir("references")
 sub("wget http://www.cibiv.at/software/teaser/E_coli.fasta")
 os.chdir("..")
-
-print("Building DWGSIM...")
-os.chdir("software/dwgsim_build")
-dwgsim_build_success=sub("make")
-os.chdir("..")
-if dwgsim_build_success:
-	sub("mv dwgsim dwgsim_prebuilt")
-	sub("cp dwgsim_build/dwgsim dwgsim")
-os.chdir("..")
-
-sub("rm teaser_software.tar.gz")
-
 
 print("Building tools...")
 os.chdir("tools")
