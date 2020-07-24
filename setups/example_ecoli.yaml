@@ -12,3 +12,7 @@ evaluation:
 threads: 1
 
 report: { name: example_ecoli }
+
+test_parameters:
+   - bwamem
+   - bwa-mem2
