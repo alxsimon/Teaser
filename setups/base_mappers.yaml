@@ -84,6 +84,7 @@ mappers:
       - software/minimap2
 
     index_files:
+      - ""
 
     command_index: ""
     command: (b) -ax sr (r) (q) -t (t) > (o)
@@ -93,7 +94,7 @@ mappers:
 
   bwa-mem2:
     title: "bwa-mem2"
-    type: MapperGeneric
+    type: MapperBwamem2
     bin: software/bwa-mem2
     index_files:
       - (r).amb
@@ -104,6 +105,6 @@ mappers:
 
     command_index: (b) index (r)
     command: (b) mem (r) (q) (x) -t (t) > (o)
-    command_multi_read_files: (b) mem (r) (q1) (q2) (x) -t (t) > (o)
+    command_multi_read_files: (b) mem (r).bwamem2 (q1) (q2) (x) -t (t) > (o)
     command_cleanup: ""
     param_paired: ""

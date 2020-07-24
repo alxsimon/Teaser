@@ -360,3 +360,155 @@ class MapperNGM(Mapper):
 
 	def getCommandLinePost(self):
 		return ""
+
+
+
+# Dedicated class for bwa-mem2 to avoid interference with the bwa mem indexing
+class MapperBwamem2(Mapper):
+	hashes = {}
+
+	def __init__(self, name, config):
+		self.name = name
+		self.title = name
+		if "title" in config:
+			self.title = config["title"]
+
+		self.binary_path = config["bin"]
+		self.params = {}
+		self.is_paired = False
+		self.read_files = []
+
+		self.command = config["command"]
+		self.command_multiread = config["command_multi_read_files"]
+		self.command_index = config["command_index"]
+		self.command_cleanup = config["command_cleanup"]
+		self.param_paired = config["param_paired"]
+		self.thread_count = 1
+
+		self.param_string = ""
+		if "param_string" in config:
+			self.param_string = config["param_string"]
+
+		self.index_files = config["index_files"]
+		self.temporary_files = []
+		if "temporary_files" in config:
+			self.temporary_files = config["temporary_files"]
+		self.config_hash = hashlib.md5(str(config)).hexdigest()
+
+	def onMapPre(self):
+		os.system('cp ' + self.params["ref"] + ' ' + self.params["ref"] + '.bwamem2')
+
+	def onMapPost(self):
+		pass
+
+	def onCleanup(self):
+		for file in self.temporary_files:
+			try:
+				os.remove(self.fillPlaceholders(file))
+			except:
+				pass
+
+	def getBinaryHash(self):
+		if isinstance(self.binary_path, basestring):
+			return self.getPathHash(self.binary_path)
+		else:
+			return hashlib.md5("".join([self.getPathHash(path) for path in self.binary_path])).hexdigest()
+
+	def getPathHash(self, path):
+		if not path in MapperBwamem2.hashes:
+			text = open(path, "r").read()
+			MapperBwamem2.hashes[path] = hashlib.md5(text).hexdigest()
+
+		return hashlib.md5(self.name + MapperBwamem2.hashes[path]).hexdigest()
+
+	def getConfigHash(self):
+		return self.config_hash
+
+	def getBinaryPath(self):
+		return self.binary_path
+
+	def getName(self):
+		return self.name
+
+	def getId(self):
+		return self.getName()
+
+	def setInReferenceFile(self, ref):
+		self.params["ref"] = ref + '.bwamem2'
+
+	def setInReadFiles(self, reads):
+		self.read_files = reads
+
+	def setInPaired(self, is_paired):
+		self.is_paired = is_paired
+
+	def setOutMappingFile(self, outfile):
+		self.params["output"] = outfile
+
+	def setThreadCount(self, threadc):
+		self.thread_count = threadc
+
+	def addParams(self, params):
+		pass
+
+	def resetParams(self):
+		self.params = {}
+
+	def fillPlaceholders(self, text):
+		if len(self.read_files) <= 1:
+			text = text.replace("(q)", self.read_files[0])
+
+		else:
+			i = 1
+			for curr in self.read_files:
+				text = text.replace("(q" + str(i) + ")", curr)
+				i = i + 1
+
+		if self.is_paired:
+			text = text.replace("(p)", self.param_paired)
+		else:
+			text = text.replace("(p)", "")
+
+		text = text.replace("(r)", self.params["ref"])
+		text = text.replace("(o)", self.params["output"])
+		text = text.replace("(x)", self.param_string)
+
+		if isinstance(self.binary_path, basestring):
+			text = text.replace("(b)", self.binary_path)
+		else:
+			i = 1
+			for path in self.binary_path:
+				text = text.replace("(b%d)" % i, path)
+				i += 1
+
+		text = text.replace("(t)", str(self.thread_count))
+
+		return text
+
+	def prepareCommand(self, cmd_single, cmd_multiread):
+		if len(self.read_files) <= 1:
+			cmd = cmd_single
+		else:
+			cmd = cmd_multiread
+
+		return self.fillPlaceholders(cmd)
+
+	def indexExists(self):
+		for index_file in self.index_files:
+			if not os.path.isfile(self.fillPlaceholders(index_file)):
+				print("Index missing: " + self.fillPlaceholders(index_file))
+				return False
+		return True
+
+	def getCommandLinePre(self):
+		if self.indexExists():
+			return ""
+		else:
+			return self.prepareCommand(self.command_index, self.command_index)
+
+	def getCommandLineMain(self):
+		return self.prepareCommand(self.command, self.command_multiread)
+
+	def getCommandLinePost(self):
+		return self.prepareCommand(self.command_cleanup, self.command_cleanup)
+
