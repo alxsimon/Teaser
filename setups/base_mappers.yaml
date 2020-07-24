@@ -76,3 +76,34 @@ mappers:
     command_multi_read_files: (b1) (x) -p (t) -x (r)_bt -1 (q1) -2 (q2) -S (o)
     command_cleanup: ""
     param_paired: ""
+
+  minimap2:
+    title: "minimap2"
+    type: MapperGeneric
+    bin:
+      - software/minimap2
+
+    index_files:
+
+    command_index: ""
+    command: (b) -ax sr (r) (q) -t (t) > (o)
+    command_multi_read_files: (b) -ax sr (r) (q1) (q2) -t (t) > (o)
+    command_cleanup: ""
+    param_paired: ""
+
+  bwa-mem2:
+    title: "bwa-mem2"
+    type: MapperGeneric
+    bin: software/bwa-mem2
+    index_files:
+      - (r).amb
+      - (r).ann
+      - (r).bwt
+      - (r).pac
+      - (r).sa
+
+    command_index: (b) index (r)
+    command: (b) mem (r) (q) (x) -t (t) > (o)
+    command_multi_read_files: (b) mem (r) (q1) (q2) (x) -t (t) > (o)
+    command_cleanup: ""
+    param_paired: ""

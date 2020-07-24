@@ -16,6 +16,8 @@ test_mappers:
    - bwa
    - bwamem
    - bwasw
+   - minimap2
+   - bwa-mem2
 
 threads: 4
 

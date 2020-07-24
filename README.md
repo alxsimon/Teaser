@@ -1,5 +1,5 @@
 # [EDIT]
-This is a fork from the main Teaser repository to apply for my own needs.
+This is a fork from the main Teaser repository for my own needs.
 Modifications here are targeted for specific uses and may not work in your settings.
 
 The main changes are:

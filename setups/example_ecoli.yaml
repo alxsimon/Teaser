@@ -1,5 +1,5 @@
 include:
-  - base_teaser.yaml
+   - base_teaser.yaml
 
 teaser:
    tests:
@@ -11,4 +11,8 @@ evaluation:
 
 threads: 1
 
-report: {name: example_ecoli}
+report: { name: example_ecoli }
+
+test_parameters:
+   - bwamem
+   - bwa-mem2

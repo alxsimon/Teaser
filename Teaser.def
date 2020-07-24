@@ -48,7 +48,7 @@ From: ubuntu:20.04
 	./install.py
 
 	## create symlinks ##
-	ln -s /opt/conda/bin/{bwa,bwa-mem2,bowtie2,bowtie2-build,minimap2} \
+	ln -s /opt/conda/bin/{bwa,bwa-mem2,bowtie2,bowtie2-build,minimap2,soap3-dp} \
 	-t /Teaser/software/
 
 %apprun run
