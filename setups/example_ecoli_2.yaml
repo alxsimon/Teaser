@@ -9,9 +9,9 @@ teaser:
 evaluation:
    pos_threshold: 10
 
-threads: 1
+threads: 4
 
-report: { name: example_ecoli }
+report: { name: example_ecoli_2 }
 
 test_mappers:
    - bwamem
