@@ -7,6 +7,13 @@ The main changes are:
     - manage mappers and tools with conda
     - include new mappers (e.g. bwa-mem2, minimap2)
 
+The following original directives may not apply in this fork.
+
+To build the singularity image
+```
+sudo singularity build Teaser.sif Teaser.def
+```
+
 
 # Teaser
 Teaser analyzes the performance of read mappers based on a data set provided by you. After you enter key characteristics such as read length and reference genome, Teaser will simulate read data including the gold standard alignment. After the simulation, Teaser automatically runs and evaluates each mapper for the selected parameters and summarizes the results in a report. Teaser also supports benchmarking read mappers on real data or custom simulations, as well as testing new mappers and custom parameter sets. You can start using Teaser right now using our web application, or download and install it to use all advanced features.
