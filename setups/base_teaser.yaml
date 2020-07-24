@@ -1,22 +1,21 @@
 include:
-  - base.yaml
-  - base_mappers.yaml
-  - base_parameters.yaml
+   - base.yaml
+   - base_mappers.yaml
+   - base_parameters.yaml
 
-  #Automatically include custom mapper definitions and parameter sets
-  - "mapper_*.yaml"
-  - "parameter_*.yaml"
+   #Automatically include custom mapper definitions and parameter sets
+   - "mapper_*.yaml"
+   - "parameter_*.yaml"
 
 test_directories:
-  - tests_base
-  - tests_generated
+   - tests_base
+   - tests_generated
 
 test_mappers:
-  - bowtie2
-  - bwa
-  - bwamem
-  - bwasw
-  - ngm
+   - bowtie2
+   - bwa
+   - bwamem
+   - bwasw
 
 threads: 4
 
@@ -37,13 +36,12 @@ teaser:
       max_memory: 1000000
       default_runtime: 3600
       max_runtime: 1000000
-      allowed_types: [simulated_teaser,simulated_custom,real]
+      allowed_types: [simulated_teaser, simulated_custom, real]
 
       news: ""
       send_usage_information: No
 
    tests: {}
-
 
 report:
    directory: reports

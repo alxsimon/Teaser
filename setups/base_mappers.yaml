@@ -43,7 +43,7 @@ mappers:
     title: "Bowtie 2"
     type: MapperGeneric
     bin:
-      - software/bowtie2/bowtie2
+      - software/bowtie2
       - software/bowtie2/bowtie2-build
 
     index_files:

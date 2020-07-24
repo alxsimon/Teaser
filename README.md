@@ -14,6 +14,16 @@ To build the singularity image
 sudo singularity build Teaser.sif Teaser.def
 ```
 
+To run the easiest way right now is to use an overlay folder with singularity
+(careful you need root access):
+```
+mkdir teaser_overlay
+
+sudo singularity exec --overlay teaser_overlay /opt/Teaser/Teaser.sif \
+bash -c 'cd /Teaser && ./teaser.py example_ecoli.yaml'
+
+ll teaser_overlay/upper/Teaser/reports/example_ecoli
+```
 
 # Teaser
 Teaser analyzes the performance of read mappers based on a data set provided by you. After you enter key characteristics such as read length and reference genome, Teaser will simulate read data including the gold standard alignment. After the simulation, Teaser automatically runs and evaluates each mapper for the selected parameters and summarizes the results in a report. Teaser also supports benchmarking read mappers on real data or custom simulations, as well as testing new mappers and custom parameter sets. You can start using Teaser right now using our web application, or download and install it to use all advanced features.
