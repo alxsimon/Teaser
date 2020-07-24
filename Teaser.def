@@ -33,8 +33,6 @@ From: ubuntu:20.04
 
     conda install -y intervaltree tornado pyaml psutil numpy
 
-	conda install -y -c bioconda dwgsim mason
-
 	# mappers
 	conda install -y -c bioconda \
 		bwa \
