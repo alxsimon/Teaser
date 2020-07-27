@@ -17,3 +17,7 @@ test_mappers:
    - bwamem
    - bwa-mem2
    - minimap2
+
+test_parameters:
+   - bwamem
+   - bwa-mem2
