@@ -3,7 +3,7 @@ mappers:
   bwa:
     title: "BWA"
     type: MapperGeneric
-    bin: software/bwa
+    bin: /opt/conda/bin/bwa
     index_files:
       - (r).amb
       - (r).ann
@@ -25,7 +25,7 @@ mappers:
   bwamem:
     title: "BWA-MEM"
     type: MapperGeneric
-    bin: software/bwa
+    bin: /opt/conda/bin/bwa
     index_files:
       - (r).amb
       - (r).ann
@@ -42,7 +42,7 @@ mappers:
   bwasw:
     title: "BWA-SW"
     type: MapperGeneric
-    bin: software/bwa
+    bin: /opt/conda/bin/bwa
     index_files:
       - (r).amb
       - (r).ann
@@ -60,8 +60,8 @@ mappers:
     title: "Bowtie 2"
     type: MapperGeneric
     bin:
-      - software/bowtie2
-      - software/bowtie2-build
+      - /opt/conda/bin/bowtie2
+      - /opt/conda/bin/bowtie2-build
 
     index_files:
       - (r)_bt.1.bt2
@@ -81,7 +81,7 @@ mappers:
     title: "minimap2"
     type: MapperGeneric
     bin:
-      - software/minimap2
+      - /opt/conda/bin/minimap2
 
     index_files:
       - ""
@@ -95,7 +95,7 @@ mappers:
   bwa-mem2:
     title: "bwa-mem2"
     type: MapperBwamem2
-    bin: software/bwa-mem2
+    bin: /opt/conda/bin/bwa-mem2
     index_files:
       - (r).amb
       - (r).ann
