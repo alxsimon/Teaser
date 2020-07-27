@@ -80,9 +80,7 @@ mappers:
   minimap2:
     title: "minimap2"
     type: MapperGeneric
-    bin:
-      - /opt/conda/bin/minimap2
-
+    bin: /opt/conda/bin/minimap2
     index_files:
       - "(r).minimap2_dummy"
 
