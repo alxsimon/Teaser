@@ -84,9 +84,9 @@ mappers:
       - /opt/conda/bin/minimap2
 
     index_files:
-      - ""
+      - "(r).minimap2_dummy"
 
-    command_index: ""
+    command_index: "touch (r).minimap2_dummy"
     command: (b) -ax sr (r) (q) -t (t) > (o)
     command_multi_read_files: (b) -ax sr (r) (q1) (q2) -t (t) > (o)
     command_cleanup: ""
