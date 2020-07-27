@@ -1,6 +1,6 @@
 import os
 import hashlib
-
+from shutil import copyfile
 
 class Mapper:
 	def __init__(self):
@@ -396,7 +396,7 @@ class MapperBwamem2(Mapper):
 		self.config_hash = hashlib.md5(str(config)).hexdigest()
 
 	def onMapPre(self):
-		os.system('cp ' + self.params["ref"] + ' ' + self.params["ref"] + '.bwamem2')
+		pass
 
 	def onMapPost(self):
 		pass
@@ -434,7 +434,9 @@ class MapperBwamem2(Mapper):
 		return self.getName()
 
 	def setInReferenceFile(self, ref):
-		self.params["ref"] = ref + '.bwamem2'
+		newref = ref + '.bwamem2'
+		copyfile(ref, newref)
+		self.params["ref"] = newref
 
 	def setInReadFiles(self, reads):
 		self.read_files = reads
