@@ -97,9 +97,10 @@ mappers:
     index_files:
       - (r).amb
       - (r).ann
-      - (r).bwt
       - (r).pac
-      - (r).sa
+      - (r).bwt.2bit.64
+      - (r).bwt.8bit.32
+      - (r).0123
 
     command_index: (b) index (r)
     command: (b) mem (r) (q) (x) -t (t) > (o)
