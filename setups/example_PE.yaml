@@ -1,0 +1,25 @@
+include:
+   - base_teaser
+   - parameters_bwa.yaml
+
+teaser:
+   tests:
+      real_pe:
+         type: real
+         reference: # use reference
+         paired: Yes
+         import_read_files: # PE files [/INPUT/1.fastq, /INPUT/2.fastq]
+
+threads: 16
+report:
+   name: example_PE
+
+test_mappers:
+   - bwamem
+   - bwa-mem2
+   - minimap2
+   - bowtie2
+
+test_parameters:
+   - bwamem
+   - bwa-mem2

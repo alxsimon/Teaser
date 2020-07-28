@@ -1,5 +1,5 @@
 include:
-  - base_teaser
+   - base_teaser
 
 teaser:
    tests:
@@ -7,7 +7,7 @@ teaser:
          type: real
          reference: E_coli.fasta
          paired: Yes
-         import_read_files: [/path/to/reads/1.fastq,/path/to/reads/2.fastq]
+         import_read_files: [/path/to/reads/1.fastq, /path/to/reads/2.fastq]
 
 threads: 2
 report:
