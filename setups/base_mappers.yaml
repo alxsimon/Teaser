@@ -103,6 +103,6 @@ mappers:
 
     command_index: (b) index (r)
     command: (b) mem (r) (q) (x) -t (t) > (o)
-    command_multi_read_files: (b) mem (r).bwamem2 (q1) (q2) (x) -t (t) > (o)
+    command_multi_read_files: (b) mem (r) (q1) (q2) (x) -t (t) > (o)
     command_cleanup: ""
     param_paired: ""
