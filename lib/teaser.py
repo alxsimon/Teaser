@@ -316,11 +316,11 @@ class Teaser:
 
 			if test["paired"]:
 				conv.align_pe("reads1.fastq", "reads2.fastq")
-				self.mv("enc_reads1.fastq", "reads1.fastq")
-				self.mv("enc_reads2.fastq", "reads2.fastq")
+				# self.mv("enc_reads1.fastq", "reads1.fastq")
+				# self.mv("enc_reads2.fastq", "reads2.fastq")
 			else:
 				conv.align_se("reads.fastq")
-				self.mv("enc_reads.fastq", "reads.fastq")
+				# self.mv("enc_reads.fastq", "reads.fastq")
 
 			self.mv("enc_mapping_comparison.sam", "mapping_comparison.sam")
 
